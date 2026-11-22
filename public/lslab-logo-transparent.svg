@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 180" width="100%" height="100%">
+  <defs>
+    <linearGradient id="transPrimaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00F2FE" />
+      <stop offset="50%" stop-color="#4FACFE" />
+      <stop offset="100%" stop-color="#0061FF" />
+    </linearGradient>
+
+    <linearGradient id="transSecondaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#60EFFF" />
+      <stop offset="100%" stop-color="#1BFFFF" />
+    </linearGradient>
+
+    <linearGradient id="transLabGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00F2FE" />
+      <stop offset="100%" stop-color="#4FACFE" />
+    </linearGradient>
+
+    <filter id="transShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#0061FF" flood-opacity="0.3" />
+    </filter>
+  </defs>
+
+  <!-- ICON -->
+  <g transform="translate(15, 10)" filter="url(#transShadow)">
+    <polygon points="75,5 140,42 140,118 75,155 10,118 10,42" fill="#0D1829" stroke="#1E2E4A" stroke-width="2" />
+    <path d="M 40,36 L 68,20 L 68,90 L 112,115 L 94,125 L 40,94 Z" fill="url(#transPrimaryGrad)" />
+    <path d="M 110,48 L 82,32 L 82,48 L 56,63 L 74,73 L 100,58 Z" fill="#FFFFFF" opacity="0.9" />
+    <path d="M 110,48 L 110,88 L 68,112 L 68,96 L 94,81 L 94,65 L 110,56 Z" fill="url(#transSecondaryGrad)" />
+    <polygon points="75,70 85,76 75,82 65,76" fill="#FFFFFF" />
+  </g>
+
+  <!-- TYPOGRAPHY -->
+  <text x="190" y="98" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Montserrat, sans-serif" font-weight="900" font-size="64" letter-spacing="-1.5" fill="#0F172A">
+    LS
+  </text>
+
+  <text x="282" y="98" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Montserrat, sans-serif" font-weight="900" font-size="64" letter-spacing="-1" fill="url(#transLabGrad)">
+    LAB
+  </text>
+
+  <circle cx="422" cy="92" r="6" fill="#00F2FE" />
+
+  <text x="192" y="132" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Montserrat, sans-serif" font-weight="600" font-size="14" letter-spacing="6" fill="#64748B">
+    DIGITAL SOLUTIONS
+  </text>
+</svg>

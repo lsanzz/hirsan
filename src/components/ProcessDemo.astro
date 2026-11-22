@@ -1,0 +1,311 @@
+---
+// Demonstração animada do processo (6 etapas), sincronizada com a lista [data-step-item] da seção.
+const labels = ['Conversa', 'Proposta', 'Textos e design', 'Prévia', 'Publicação', 'Acompanhamento'];
+---
+<div class="artifact pd" data-process-demo data-step="0" aria-hidden="true">
+  <div class="pd__head">
+    <div class="pd__bar">
+      <i></i><i></i><i></i>
+      <span class="pd__url">
+        <svg class="pd__lock" viewBox="0 0 16 16" width="12" height="12"><path d="M4.5 7V5a3.5 3.5 0 0 1 7 0v2M3.5 7h9v6.5h-9z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        suaempresa.com.br
+      </span>
+    </div>
+    <div class="pd__meta">
+      <span class="pd__count"><b data-pd-count>01</b>/06</span>
+      <span class="pd__status"><span class="pd__dot"></span><span data-pd-label>{labels[0]}</span></span>
+    </div>
+  </div>
+
+  <div class="pd__stage">
+    <!-- 1 · Conversa -->
+    <div class="pd__scene is-active" data-scene>
+      <div class="chat">
+        <div class="bubble bubble--in in" style="--d:.15s">Oi! Quero um site para a minha empresa.</div>
+        <div class="bubble bubble--typing in" style="--d:.9s"><i></i><i></i><i></i></div>
+        <div class="bubble bubble--out in" style="--d:2s">Claro! Conta pra gente sobre o seu negócio?</div>
+      </div>
+    </div>
+
+    <!-- 2 · Proposta -->
+    <div class="pd__scene" data-scene>
+      <div class="doc in" style="--d:.1s">
+        <div class="doc__top">
+          <span class="doc__title">Proposta</span>
+          <span class="stamp">Aprovada</span>
+        </div>
+        <ul class="checks">
+          <li class="in" style="--d:.45s"><span class="ck"></span>Site sob medida</li>
+          <li class="in" style="--d:.75s"><span class="ck"></span>Textos para o Google</li>
+          <li class="in" style="--d:1.05s"><span class="ck"></span>Domínio e hospedagem</li>
+          <li class="in" style="--d:1.35s"><span class="ck"></span>Manutenção mensal</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 3 · Textos e design -->
+    <div class="pd__scene" data-scene>
+      <div class="mini in" style="--d:.1s">
+        <p class="mini__h"><span class="type">Sua empresa, no Google.</span></p>
+        <span class="w w--md grow" style="--d:1.6s"></span>
+        <span class="w w--sm grow" style="--d:1.8s"></span>
+      </div>
+      <div class="kit">
+        <span class="sw in" style="--c:#17191c; --d:.5s"></span>
+        <span class="sw in" style="--c:#f2f2f3; --d:.65s"></span>
+        <span class="sw in" style="--c:#fbe1d1; --d:.8s"></span>
+        <span class="aa in" style="--d:1s">Aa</span>
+      </div>
+    </div>
+
+    <!-- 4 · Prévia -->
+    <div class="pd__scene" data-scene>
+      <div class="mini mini--full in" style="--d:.05s">
+        <p class="mini__h">Sua empresa, no Google.</p>
+        <span class="w w--md"></span>
+        <span class="mini__btn"></span>
+        <div class="mini__cards">
+          <span class="in" style="--d:.3s"></span><span class="in" style="--d:.42s"></span><span class="in" style="--d:.54s"></span>
+        </div>
+      </div>
+      <div class="review in" style="--d:.5s">
+        <span class="review__round">Rodada 1 de 2</span>
+        <span class="pbtn pbtn--ghost">Ajustar</span>
+        <span class="pbtn pbtn--fill"><span class="pbtn__a">Aprovar</span><span class="pbtn__b">Aprovado ✓</span></span>
+      </div>
+      <svg class="cursor" viewBox="0 0 24 24" width="22" height="22"><path d="M5 3l14 7.5-6.2 1.6L9.6 18z" fill="#17191c" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/></svg>
+    </div>
+
+    <!-- 5 · Publicação -->
+    <div class="pd__scene" data-scene>
+      <ul class="launch">
+        <li class="in" style="--d:.15s"><span class="ck"></span>Domínio configurado</li>
+        <li class="in" style="--d:.55s"><span class="ck"></span>Cadeado de segurança</li>
+        <li class="in" style="--d:.95s"><span class="ck"></span>Site publicado</li>
+      </ul>
+      <div class="live in" style="--d:1.5s">
+        <span class="live__dot"></span>
+        <span><b>suaempresa.com.br</b> está no ar</span>
+      </div>
+    </div>
+
+    <!-- 6 · Acompanhamento -->
+    <div class="pd__scene" data-scene>
+      <div class="chat">
+        <div class="bubble bubble--in in" style="--d:.15s">Pode trocar o telefone do rodapé?</div>
+        <div class="bubble bubble--typing in" style="--d:.8s"><i></i><i></i><i></i></div>
+        <div class="bubble bubble--out in" style="--d:1.8s">Feito! Já está no ar. ✓</div>
+      </div>
+      <p class="care in" style="--d:2.4s">Manutenção mensal ativa</p>
+    </div>
+  </div>
+
+  <div class="pd__progress">
+    {labels.map(() => <span class="seg" data-seg><i></i></span>)}
+  </div>
+</div>
+
+<script>
+  const LABELS = ['Conversa', 'Proposta', 'Textos e design', 'Prévia', 'Publicação', 'Acompanhamento'];
+  const DUR = [3600, 3200, 3400, 4200, 3400, 3800];
+
+  function init(root: HTMLElement) {
+    const scenes = [...root.querySelectorAll<HTMLElement>('[data-scene]')];
+    const segs = [...root.querySelectorAll<HTMLElement>('[data-seg]')];
+    const items = [...document.querySelectorAll<HTMLElement>('[data-step-item]')];
+    const label = root.querySelector<HTMLElement>('[data-pd-label]')!;
+    const count = root.querySelector<HTMLElement>('[data-pd-count]')!;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const n = scenes.length;
+    let i = 0;
+    let timer = 0;
+    let visible = false;
+
+    function go(k: number) {
+      i = (k + n) % n;
+      root.dataset.step = String(i);
+      root.style.setProperty('--dur', DUR[i] + 'ms');
+      scenes.forEach((s, j) => s.classList.toggle('is-active', j === i));
+      segs.forEach((s, j) => {
+        s.classList.toggle('is-done', j < i);
+        s.classList.remove('is-active');
+        if (j === i) { void s.offsetWidth; s.classList.add('is-active'); }
+      });
+      items.forEach((li, j) => {
+        li.classList.toggle('is-active', j === i);
+        li.classList.toggle('is-done', j < i);
+        if (j === i) li.setAttribute('aria-current', 'step');
+        else li.removeAttribute('aria-current');
+      });
+      label.textContent = LABELS[i];
+      count.textContent = String(i + 1).padStart(2, '0');
+    }
+
+    let paused = false;
+    root.addEventListener('mouseenter', () => { paused = true; root.classList.add('is-paused'); clearTimeout(timer); });
+    root.addEventListener('mouseleave', () => { paused = false; root.classList.remove('is-paused'); go(i); schedule(); });
+
+    function schedule() {
+      clearTimeout(timer);
+      if (reduce || !visible || paused) return;
+      timer = window.setTimeout(() => { go(i + 1); schedule(); }, DUR[i]);
+    }
+
+    items.forEach((li, j) => {
+      const pick = () => { go(j); schedule(); };
+      li.addEventListener('click', pick);
+      li.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); }
+      });
+    });
+
+    new IntersectionObserver(([entry]) => {
+      const was = visible;
+      visible = entry.isIntersecting;
+      if (visible && !was) { go(i); schedule(); }
+      if (!visible) clearTimeout(timer);
+    }, { threshold: 0.35 }).observe(root);
+
+    go(reduce ? 3 : 0);
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-process-demo]').forEach(init);
+</script>
+
+<style>
+  .pd {
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    width: 100%; max-width: 520px; margin: 0 auto;
+    padding: 0; overflow: hidden;
+  }
+
+  /* Cabeçalho tipo navegador */
+  .pd__head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--color-border); background: var(--color-fog-white); }
+  .pd__bar { display: flex; align-items: center; gap: 6px; min-width: 0; }
+  .pd__bar > i { width: 8px; height: 8px; border-radius: 50%; background: #dcdde0; flex: none; }
+  .pd__url { display: inline-flex; align-items: center; gap: 5px; margin-left: 8px; font-size: 12px; color: var(--color-slate-gray); white-space: nowrap; }
+  .pd__lock { width: 0; opacity: 0; transition: width .4s var(--ease), opacity .4s; color: var(--color-ink-black); }
+  .pd[data-step="4"] .pd__lock, .pd[data-step="5"] .pd__lock { width: 12px; opacity: 1; }
+  .pd__meta { display: flex; align-items: center; gap: 10px; flex: none; }
+  .pd__count { font-size: 12px; color: var(--color-ash-gray); font-variant-numeric: tabular-nums; }
+  .pd__count b { color: var(--color-ink-black); font-weight: 500; }
+  .pd__status { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 9999px; background: var(--color-blush-peach); color: var(--color-sienna-brown); }
+  .pd__dot { width: 6px; height: 6px; border-radius: 50%; background: var(--color-sienna-brown); animation: pdPulse 1.6s ease-in-out infinite; }
+
+  /* Palco das cenas */
+  .pd__stage { position: relative; height: 330px; }
+  .pd__scene {
+    position: absolute; inset: 0; padding: 24px 28px;
+    display: flex; flex-direction: column; justify-content: center; gap: 12px;
+    opacity: 0; transform: translateY(10px); pointer-events: none;
+    transition: opacity .45s var(--ease), transform .55s var(--ease);
+  }
+  .pd__scene.is-active { opacity: 1; transform: none; }
+  .pd__scene.is-active .in { animation: pdIn .6s var(--ease) var(--d, 0s) both; }
+
+  /* Chat */
+  .chat { display: flex; flex-direction: column; gap: 8px; }
+  .bubble { max-width: 78%; padding: 10px 14px; border-radius: 16px; font-size: 15px; line-height: 1.4; }
+  .bubble--in { align-self: flex-start; background: var(--color-mist-gray); border-bottom-left-radius: 6px; }
+  .bubble--out { align-self: flex-end; background: var(--color-ink-black); color: #fff; border-bottom-right-radius: 6px; }
+  .bubble--typing { align-self: flex-end; display: flex; gap: 4px; background: var(--color-mist-gray); padding: 12px 14px; }
+  .bubble--typing i { width: 6px; height: 6px; border-radius: 50%; background: var(--color-smoke-gray); animation: pdDots 1s ease-in-out infinite; }
+  .bubble--typing i:nth-child(2) { animation-delay: .15s; }
+  .bubble--typing i:nth-child(3) { animation-delay: .3s; }
+  /* a "digitação" some quando a resposta chega */
+  .pd__scene.is-active .bubble--typing { animation: pdIn .4s var(--ease) var(--d) both, pdGone .3s ease calc(var(--d) + 1s) forwards; }
+
+  /* Proposta */
+  .doc { border: 1px solid var(--color-border); border-radius: 16px; padding: 16px 18px; }
+  .doc__top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+  .doc__title { font-family: var(--font-signifier); font-size: 22px; }
+  .stamp { font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 9999px; border: 1.5px solid var(--color-sienna-brown); color: var(--color-sienna-brown); background: var(--color-blush-peach); }
+  .pd__scene.is-active .stamp { animation: pdStamp .5s var(--ease) 1.9s both; }
+  .checks, .launch { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; font-size: 14px; }
+  .checks li, .launch li { display: flex; align-items: center; gap: 10px; }
+  .ck { width: 18px; height: 18px; border-radius: 50%; flex: none; background: var(--color-ink-black) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.2 2.2 4.8-4.8' fill='none' stroke='white' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat; }
+
+  /* Mini site */
+  .mini { background: var(--color-fog-white); border-radius: 14px; padding: 18px; display: grid; gap: 10px; }
+  .mini__h { font-family: var(--font-signifier); font-size: 28px; line-height: 1.15; letter-spacing: -0.01em; }
+  .type { display: inline-block; white-space: nowrap; clip-path: inset(0 100% 0 0); border-right: 2px solid var(--color-ink-black); padding-right: 2px; }
+  .pd__scene.is-active .type { animation: pdType 1.3s steps(23) .3s forwards, pdCaret .7s step-end 1.6s 3 forwards; }
+  .w { display: block; height: 9px; border-radius: 9999px; background: #e4e5e8; }
+  .w--md { width: 70%; } .w--sm { width: 45%; }
+  .pd__scene.is-active .grow { animation: pdGrow .7s var(--ease) var(--d) both; transform-origin: left; }
+  .mini__btn { width: 84px; height: 22px; border-radius: 9999px; background: var(--color-ink-black); }
+  .mini__cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .mini__cards span { height: 44px; border-radius: 8px; background: #fff; box-shadow: 0 0 0 1px var(--color-border); }
+  .mini--full { padding: 14px 16px; gap: 8px; }
+  .mini--full .mini__h { font-size: 22px; }
+
+  .kit { display: flex; align-items: center; gap: 8px; }
+  .sw { width: 28px; height: 28px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 1px rgba(0,0,0,.08); }
+  .aa { margin-left: 6px; font-family: var(--font-signifier); font-size: 22px; }
+
+  /* Revisão + cursor */
+  .review { display: flex; align-items: center; gap: 8px; }
+  .review__round { font-size: 13px; color: var(--color-slate-gray); margin-right: auto; white-space: nowrap; }
+  .pbtn { display: inline-grid; place-items: center; height: 32px; padding: 0 14px; border-radius: 9999px; font-size: 13px; font-weight: 500; }
+  .pbtn--ghost { border: 1px solid rgba(23,25,28,.2); }
+  .pbtn--fill { background: var(--color-ink-black); color: #fff; min-width: 104px; overflow: hidden; }
+  .pbtn--fill > span { grid-area: 1 / 1; transition: transform .35s var(--ease), opacity .35s; }
+  .pbtn__b { opacity: 0; transform: translateY(100%); }
+  .pd__scene.is-active .pbtn__a { animation: pdOut .35s var(--ease) 2.6s forwards; }
+  .pd__scene.is-active .pbtn__b { animation: pdUp .35s var(--ease) 2.6s forwards; }
+  .pd__scene.is-active .pbtn--fill { animation: pdPress .3s ease 2.45s; }
+  .cursor { position: absolute; right: 64px; bottom: 62px; opacity: 0; filter: drop-shadow(0 2px 3px rgba(0,0,0,.2)); }
+  .pd__scene.is-active .cursor { animation: pdCursor 2.6s var(--ease) .6s both; }
+
+  /* Publicação */
+  .live { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 14px; background: var(--color-blush-peach); color: var(--color-sienna-brown); font-size: 14px; }
+  .live b { font-weight: 500; }
+  .live__dot { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--color-sienna-brown); flex: none; }
+  .live__dot::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid var(--color-sienna-brown); animation: pdRing 1.6s ease-out infinite; }
+
+  .care { font-size: 13px; color: var(--color-slate-gray); text-align: center; }
+
+  /* Barra de progresso por etapa */
+  .pd__progress { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; padding: 0 28px 22px; }
+  .seg { height: 4px; border-radius: 9999px; background: var(--color-mist-gray); overflow: hidden; }
+  .seg i { display: block; height: 100%; width: 0; background: var(--color-ink-black); }
+  .seg.is-done i { width: 100%; }
+  .seg.is-active i { animation: pdFill var(--dur, 3.6s) linear forwards; }
+  .pd.is-paused .seg.is-active i { animation-play-state: paused; }
+
+  @keyframes pdIn { from { opacity: 0; transform: translateY(8px) scale(.98); } to { opacity: 1; transform: none; } }
+  @keyframes pdGone { to { opacity: 0; height: 0; padding-top: 0; padding-bottom: 0; margin: -4px 0; } }
+  @keyframes pdDots { 0%, 100% { transform: translateY(0); opacity: .5; } 50% { transform: translateY(-3px); opacity: 1; } }
+  @keyframes pdStamp { 0% { opacity: 0; transform: scale(1.6) rotate(-8deg); } 100% { opacity: 1; transform: scale(1) rotate(-3deg); } }
+  @keyframes pdType { to { clip-path: inset(0 0 0 0); } }
+  @keyframes pdCaret { 50% { border-color: transparent; } to { border-color: transparent; } }
+  @keyframes pdGrow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes pdCursor {
+    0% { opacity: 0; transform: translate(90px, 70px); }
+    15% { opacity: 1; }
+    65% { transform: translate(0, 0); }
+    72% { transform: translate(0, 0) scale(.85); }
+    80%, 100% { opacity: 1; transform: translate(0, 0) scale(1); }
+  }
+  @keyframes pdPress { 50% { transform: scale(.94); } }
+  @keyframes pdOut { to { opacity: 0; transform: translateY(-100%); } }
+  @keyframes pdUp { to { opacity: 1; transform: none; } }
+  @keyframes pdRing { from { transform: scale(.6); opacity: .8; } to { transform: scale(1.8); opacity: 0; } }
+  @keyframes pdPulse { 50% { opacity: .35; } }
+  @keyframes pdFill { from { width: 0; } to { width: 100%; } }
+
+  @media (max-width: 480px) {
+    .pd__scene { padding: 18px; }
+    .pd__progress { padding: 0 18px 18px; }
+    .pbtn { padding: 0 11px; }
+    .pbtn--fill { min-width: 96px; }
+    .pd__count { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .type { clip-path: none; border-right: 0; }
+    .pbtn__a { opacity: 0; } .pbtn__b { opacity: 1; transform: none; }
+    .cursor { display: none; }
+    .bubble--typing { display: none; }
+  }
+</style>

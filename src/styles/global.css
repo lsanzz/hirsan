@@ -1,0 +1,182 @@
+/* LS Lab — tokens do design system editorial (ref. DESIGN_SYSTEM.md) */
+:root {
+  --color-ink-black: #17191c;
+  --color-paper-white: #ffffff;
+  --color-mist-gray: #f2f2f3;
+  --color-fog-white: #fafafb;
+  --color-slate-gray: #5c606a; /* escurecido p/ contraste WCAG AA (QA) */
+  --color-ash-gray: #696c74; /* escurecido p/ contraste WCAG AA (QA) */
+  --color-smoke-gray: #a3a6af;
+  --color-blush-peach: #fbe1d1;
+  --color-sienna-brown: #5d2a1a;
+  --color-border: #ececec;
+
+  --font-signifier: 'Signifier', 'Source Serif 4', ui-serif, Georgia, serif;
+  --font-sohne: 'Sohne', 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --text-caption: 15px;
+  --text-body: 17px;
+  --text-body-lg: 20px;
+  --text-subheading: 22px;
+  --text-heading-sm: 26px;
+  --text-heading: clamp(32px, 4.2vw, 44px);
+  --text-heading-lg: clamp(40px, 6vw, 64px);
+  --text-display: clamp(48px, 8.4vw, 90px);
+
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+
+  --radius-cards: 24px;
+  --radius-images: 12px;
+  --radius-inputs: 16px;
+  --radius-buttons: 9999px;
+  --radius-smallcards: 16px;
+  --radius-elevatedcards: 20px;
+
+  --shadow-artifact: 0 0 0 1px rgba(4, 23, 43, 0.05), 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 100px; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--color-paper-white);
+  color: var(--color-ink-black);
+  font-family: var(--font-sohne);
+  font-size: var(--text-body);
+  line-height: 1.35;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; }
+h1, h2, h3, p { margin: 0; }
+
+:focus-visible { outline: 2px solid var(--color-ink-black); outline-offset: 3px; border-radius: 4px; }
+.skip-link { position: absolute; left: -9999px; top: 8px; background: var(--color-ink-black); color: #fff; padding: 8px 16px; border-radius: var(--radius-buttons); z-index: 100; }
+.skip-link:focus { left: 16px; }
+
+.container { width: 100%; max-width: var(--page-max-width); margin: 0 auto; padding: 0 24px; }
+.section { padding: var(--section-gap) 0; }
+.section--fog { background: var(--color-fog-white); }
+
+/* Tipografia */
+.display, .h-lg, .h-md {
+  font-family: var(--font-signifier);
+  font-weight: 400;
+  line-height: 1.12;
+}
+.display { font-size: var(--text-display); letter-spacing: -0.025em; }
+.h-lg { font-size: var(--text-heading-lg); letter-spacing: -0.015em; }
+.h-md { font-size: var(--text-heading); letter-spacing: -0.015em; }
+.display em, .h-lg em, .h-md em { font-style: italic; }
+.lead { font-size: 18px; font-weight: 430; color: var(--color-slate-gray); line-height: 1.5; letter-spacing: -0.009em; }
+.tag { font-size: 14px; color: var(--color-ash-gray); }
+
+/* Botões pílula & Micro-interações (estilo 21st.dev) */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 46px; padding: 0 24px;
+  border-radius: var(--radius-buttons);
+  font: 500 16px/1 var(--font-sohne);
+  text-decoration: none; cursor: pointer;
+  position: relative; overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s, color 0.2s, border-color 0.2s;
+  will-change: transform;
+}
+.btn:active { transform: translateY(1px) scale(0.98); }
+
+/* Shimmer Button Effect (21st.dev) */
+.btn--filled {
+  background: var(--color-ink-black); color: #fff;
+  border: 1px solid var(--color-ink-black);
+  box-shadow: 0 2px 4px rgba(23, 25, 28, 0.08);
+}
+.btn--filled::after {
+  content: '';
+  position: absolute; top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.2) 50%, transparent 100%);
+  transform: skewX(-20deg);
+  transition: none;
+}
+.btn--filled:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px -6px rgba(23, 25, 28, 0.28);
+}
+.btn--filled:hover::after {
+  left: 150%;
+  transition: left 0.65s ease-in-out;
+}
+
+.btn--ghost {
+  background: transparent; color: var(--color-ink-black);
+  border: 1px solid rgba(23, 25, 28, 0.2);
+}
+.btn--ghost:hover {
+  background: var(--color-ink-black); color: #fff; border-color: var(--color-ink-black);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -4px rgba(23, 25, 28, 0.18);
+}
+
+.btn__arrow {
+  display: inline-block;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn:hover .btn__arrow { transform: translateX(4px); }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: 14px; }
+
+.link-arrow {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 20px 0 0; font-size: 16px; text-decoration: none; font-weight: 480;
+  transition: gap 0.2s ease, color 0.2s;
+}
+.link-arrow:hover {
+  text-decoration: underline; text-underline-offset: 4px;
+  gap: 10px;
+}
+
+/* Cards Interativos com Efeito Spotlight sutil (21st.dev) */
+.card {
+  background: var(--color-mist-gray);
+  border-radius: var(--radius-cards);
+  padding: 32px 24px;
+  border: 1px solid transparent;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s, background-color 0.3s;
+}
+.card:hover {
+  transform: translateY(-4px);
+  background: #ffffff;
+  border-color: rgba(23, 25, 28, 0.08);
+  box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.06);
+}
+.card h3 { font-size: 20px; font-weight: 500; margin: 14px 0 8px; transition: color 0.2s; }
+.card p { font-size: 16px; line-height: 1.5; color: var(--color-slate-gray); }
+.card--peach p { color: var(--color-sienna-brown); }
+.card--peach {
+  background: var(--color-blush-peach);
+  color: var(--color-sienna-brown);
+  border-color: rgba(93, 42, 26, 0.12);
+}
+.card--peach:hover {
+  background: var(--color-blush-peach);
+  border-color: rgba(93, 42, 26, 0.25);
+  box-shadow: 0 20px 35px -10px rgba(93, 42, 26, 0.12);
+}
+
+.artifact {
+  background: #fff; border-radius: var(--radius-elevatedcards);
+  box-shadow: var(--shadow-artifact); padding: 16px 20px;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.artifact:hover {
+  box-shadow: 0 0 0 1px rgba(4, 23, 43, 0.08), 0 25px 35px -8px rgba(0, 0, 0, 0.15), 0 12px 14px -6px rgba(0, 0, 0, 0.1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; animation: none !important; }
+}
+
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
