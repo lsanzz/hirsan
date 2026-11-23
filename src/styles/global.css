@@ -1,4 +1,6 @@
-/* LS Lab — tokens do design system editorial (ref. DESIGN_SYSTEM.md) */
+/* Hirsan — tokens do design system editorial (ref. hirsan-assets/DESIGN_SYSTEM.md)
+   Fontes: só gratuitas (Source Serif 4 e Inter via Google Fonts). Signifier e Söhne são pagas e não são usadas;
+   os nomes das variáveis --font-signifier/--font-sohne foram mantidos só por compatibilidade. */
 :root {
   --color-ink-black: #17191c;
   --color-paper-white: #ffffff;
@@ -11,8 +13,8 @@
   --color-sienna-brown: #5d2a1a;
   --color-border: #ececec;
 
-  --font-signifier: 'Signifier', 'Source Serif 4', ui-serif, Georgia, serif;
-  --font-sohne: 'Sohne', 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-signifier: 'Source Serif 4', 'Newsreader', ui-serif, Georgia, serif;
+  --font-sohne: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
   --text-caption: 15px;
   --text-body: 17px;

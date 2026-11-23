@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="18 14 254 48" width="100%" height="100%">
+  
+  <g transform="translate(18, 14)">
+    <rect width="48" height="48" rx="12" fill="#17191C" />
+    <g fill="#FAFAFA" transform="translate(4, 4) scale(0.62)">
+      <polygon points="12,12 24,12 24,52 12,52" />
+      <polygon points="24,26 40,18 40,30 24,38" />
+      <polygon points="40,12 52,12 52,52 40,52" />
+    </g>
+    <text x="64" y="34" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'SF Pro Display', sans-serif" font-weight="800" font-size="34" letter-spacing="4" fill="#17191C">
+      HIRSAN
+    </text>
+    <text x="66" y="47" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'SF Pro Text', sans-serif" font-weight="500" font-size="10" letter-spacing="3" fill="#71717A">
+      STUDIO
+    </text>
+  </g>
+</svg>

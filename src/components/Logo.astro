@@ -1,0 +1,20 @@
+---
+// Logo da marca embutido no HTML (assim o texto usa a fonte Inter carregada pela página).
+import { brand } from '../brand';
+interface Props { height?: number; class?: string }
+const { height = 46, class: cls = '' } = Astro.props;
+// Remove comentários, <title> (evita tooltip) e, da tag <svg> raiz, tamanho fixo e rótulos próprios:
+// o tamanho vem do CSS e o nome acessível vem do <span> abaixo.
+const svg = brand.logo
+  .replace(/<!--[\s\S]*?-->/g, '')
+  .replace(/<title>[\s\S]*?<\/title>/g, '')
+  .replace(/<svg([^>]*)>/, (_m, attrs: string) =>
+    `<svg${attrs.replace(/\s(width|height|role|aria-label)="[^"]*"/g, '')} aria-hidden="true" focusable="false">`);
+---
+<span class:list={['logo', cls]} role="img" aria-label={brand.name} style={`--logo-h:${height}px`} set:html={svg} />
+
+<style>
+  .logo { display: inline-flex; align-items: center; line-height: 0; }
+  .logo :global(svg) { height: var(--logo-h); width: auto; display: block; overflow: visible; }
+  .logo :global(text) { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; }
+</style>

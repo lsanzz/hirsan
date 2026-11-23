@@ -1,4 +1,5 @@
 ---
+import Logo from './Logo.astro';
 const links = [
   { href: '#servicos', label: 'Serviços' },
   { href: '#cases', label: 'Cases' },
@@ -8,8 +9,8 @@ const links = [
 ---
 <header class="nav">
   <div class="container nav__inner">
-    <a href="/" class="nav__logo" aria-label="LS Lab — página inicial">
-      <img src="/lslab-official-lockup-transparent.svg" alt="LS Lab" width="180" height="60" />
+    <a href="/" class="nav__logo" aria-label="Hirsan — página inicial">
+      <Logo height={28} class="nav__logo-mark" />
     </a>
     <nav class="nav__links" aria-label="Principal">
       {links.map((l) => <a href={l.href}>{l.label}</a>)}
@@ -54,8 +55,8 @@ const links = [
   }
   .nav__inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 84px; }
   .nav__logo { display: inline-flex; align-items: center; text-decoration: none; }
-  .nav__logo img { height: 46px; width: auto; display: block; transition: transform 0.25s ease; }
-  .nav__logo:hover img, .nav__logo:focus-visible img { transform: scale(1.03); }
+  .nav__logo :global(.nav__logo-mark) { transition: transform 0.25s ease; transform-origin: left center; }
+  .nav__logo:hover :global(.nav__logo-mark), .nav__logo:focus-visible :global(.nav__logo-mark) { transform: scale(1.03); }
   .nav__links { display: flex; gap: 32px; }
   .nav__links a, .nav__text {
     font-size: 15px; font-weight: 480; text-decoration: none; padding: 6px 0;
@@ -81,7 +82,7 @@ const links = [
   .nav__mobile summary::-webkit-details-marker { display: none; }
   .nav__sheet {
     position: absolute; right: 0; top: calc(100% + 8px); width: 240px;
-    background: #fff; border-radius: 20px; padding: 16px;
+    background: var(--color-paper-white); border-radius: 20px; padding: 16px;
     box-shadow: 0 0 0 1px rgba(0,0,0,.05), 0 10px 30px rgba(0,0,0,.1);
     display: flex; flex-direction: column; gap: 4px;
     animation: fadeIn 0.2s ease-out;
@@ -95,6 +96,6 @@ const links = [
   @media (max-width: 900px) {
     .nav__links, .nav__cta { display: none; }
     .nav__mobile { display: block; }
-    .nav__logo img { height: 38px; width: auto; }
+    .nav__logo :global(.nav__logo-mark) { --logo-h: 23px !important; }
   }
 </style>
