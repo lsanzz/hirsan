@@ -1,5 +1,3 @@
-# hirsan.
-
 ## Sobre a Hirsan
 
 A Hirsan cria sites profissionais para pequenas e médias empresas que precisam ser encontradas no Google e atender bem quem chega pelo celular. O foco são **landing pages** e **sites de uma página com seções**, além de sites com páginas internas para quem precisa de mais conteúdo.
