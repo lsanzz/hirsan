@@ -1,9 +1,5 @@
 # hirsan.
 
-**Site institucional da Hirsan, estúdio de criação de sites para pequenas e médias empresas.**
-
-[hirsan.com.br](https://hirsan.com.br)
-
 ---
 
 ## Sobre a Hirsan
